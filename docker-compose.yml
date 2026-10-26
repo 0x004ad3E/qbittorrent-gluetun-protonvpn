@@ -53,4 +53,6 @@ services:
     volumes:
       # path to location where qbittorrent config and downloads are found
       - /path/to/folder/where/qbittorrent/configs/are/available:/config
+      # in the same location as above /path/to/folder/where/qbittorrent/configs/are/available create a subfolder scripts
+      # and place on_download_completed.sh in the scripts folder
       - /path/to/folder/where/qbittorrent/downloads:/downloads
