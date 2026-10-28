@@ -37,6 +37,8 @@ services:
     #command:
       #- --help
     container_name: qbittorrent-nox
+    env_file:
+      - .env
     environment:
       - QBT_LEGAL_NOTICE=confirm
       - QBT_VERSION=latest
@@ -54,5 +56,8 @@ services:
       # path to location where qbittorrent config and downloads are found
       - /path/to/folder/where/qbittorrent/configs/are/available:/config
       # in the same location as above /path/to/folder/where/qbittorrent/configs/are/available create a subfolder scripts
-      # and place on_download_completed.sh in the scripts folder
+      # and place on_download_completed.sh, on_torrent_added.sh in the scripts folder
       - /path/to/folder/where/qbittorrent/downloads:/downloads
+      # refer to repository rss-parser. this is used to get the image url, to set in comments. 
+      # the image url shall be later used in the repository download-organizer
+      - /path/to/rss-parser/output:/rss-parser
