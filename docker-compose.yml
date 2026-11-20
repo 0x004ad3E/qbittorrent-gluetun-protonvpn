@@ -30,6 +30,9 @@ services:
       - TZ=Europe/Berlin
       - UPDATER_PERIOD=0
   qbittorrent-nox:
+    build:
+      context: .
+      dockerfile: Dockerfile
     # for debugging
     #cap_add:
       #- SYS_PTRACE
@@ -40,6 +43,8 @@ services:
     env_file:
       - .env
     environment:
+      - PGID=1000
+      - PUID=1000
       - QBT_LEGAL_NOTICE=confirm
       - QBT_VERSION=latest
       - QBT_WEBUI_PORT=6520
