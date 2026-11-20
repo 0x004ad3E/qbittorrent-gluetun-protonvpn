@@ -17,7 +17,10 @@ Note:
 2. Update qbittorrent to bind to tun0 or whatever name that is generated for the vpn tunnel. qbittorrent UI->Tools->Options->Advanced->Network Inferface
 3. When a torrent is added, the script on_torrent_added.sh is executed. This updates the qbittorrent comment with the url of the image, that will be used as poster image later when download-organizer runs. Refer [download-organizer](https://github.com/0x004ad3E/download-organizer)
 4. When a download is completed, the script on_download_completed.sh is executed. This creates a json file download-queue.json with the details of the downloaded content in /config/download-organizer/. This json file can then be used for custom processing the downloaded content e.g. organising into different folders based on category of downloaded content. (Currently supports 2 categories movies and series) Refer [download-organizer](https://github.com/0x004ad3E/download-organizer)
-  
+
+Tip: Add user to docker group, so docker commands can be run without sudo
+sudo usermod -aG docker $USER
+
 to start
 
 
