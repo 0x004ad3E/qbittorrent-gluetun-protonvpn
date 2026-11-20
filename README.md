@@ -21,4 +21,4 @@ Note:
 to start
 
 
-docker compose up
+docker compose up --build
