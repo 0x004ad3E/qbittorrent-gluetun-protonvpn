@@ -19,7 +19,7 @@ Note:
 4. When a download is completed, the script on_download_completed.sh is executed. This creates a json file download-queue.json with the details of the downloaded content in /config/download-organizer/. This json file can then be used for custom processing the downloaded content e.g. organising into different folders based on category of downloaded content. (Currently supports 2 categories movies and series) Refer [download-organizer](https://github.com/0x004ad3E/download-organizer)
 
 Tip: Add user to docker group, so docker commands can be run without sudo
-sudo usermod -aG docker $USER
+  sudo usermod -aG docker $USER
 
 to start
 
