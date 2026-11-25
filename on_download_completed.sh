@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 set -Eeuo pipefail
 
+exec >> /config/on_torrent_completed.log 2>&1
+
+echo "========== SCRIPT STARTED $(date) =========="
+
 # Persistent shared queue inside the container.
 QUEUE="/config/download-organizer/download-queue.json"
 LOCK="${QUEUE}.lock"
@@ -8,6 +12,9 @@ LOCK="${QUEUE}.lock"
 CATEGORY="${1:-}"
 SOURCE="${2:-}"
 TORRENT_HASH="${3:-}"
+TORRENT_HASH_V2="${4:-}"
+TORRENT_ID="${5:-}"
+COMMENTS="${6:-}"
 
 case "$CATEGORY" in
     movies|series) ;;
@@ -73,16 +80,22 @@ trap 'rm -f -- "$TMP"' EXIT
 
 jq \
     --arg hash "$TORRENT_HASH" \
+    --arg hashv2 "$TORRENT_HASH_V2" \
+    --arg id "$TORRENT_ID" \
     --arg category "$CATEGORY" \
     --arg source "$SOURCE" \
     --arg added "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+    --arg comments "$COMMENTS" \
     '. + [{
         hash: $hash,
+        hashv2: $hashv2,
+        id: $id,
         category: $category,
         source: $source,
         destination: null,
         status: "pending",
         added_at: $added,
+        comments: $comments,
         error: null
     }]' "$QUEUE" > "$TMP"
 
