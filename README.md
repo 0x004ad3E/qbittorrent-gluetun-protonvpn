@@ -8,7 +8,7 @@ qbittorrent and gluetun docker using proton vpn
 * create a folder scripts under the config folder of the qbittorrent. Copy on_download_completed.sh into the scripts folder
 *  update qbittorrent UI->Tools->Options->Downloads->Run on torrent added: ```/bin/bash /config/scripts/on_torrent_added.sh "%L" "%F" "%I" "%N"```
 *  update the vars QBITTORRENT_URL and QBITTORRENT_API_KEY  in the script on_torrent_added.sh. For some reason the  env vars from .env are not visible.
-* update qbittorrent UI->Tools->Options->Downloads->Run on torrent finished: ```/bin/bash /config/scripts/on_download_completed.sh "%L" "%F" "%I"```
+* update qbittorrent UI->Tools->Options->Downloads->Run on torrent finished: ```/bin/bash /config/scripts/on_download_completed.sh "%L" "%F" "%I" "%J" "%K" "%M"```
 * http proxy server available on port 8888
 * qbittorrent web ui available on port 6520
 
